@@ -1,0 +1,56 @@
+{
+  "name": "sequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "prepare": "husky install",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "sequelize",
+    "mysql",
+    "nodejs",
+    "redis",
+    "docker-compose",
+    "docker",
+    "ttd",
+    "git hooks",
+    "jest",
+    "eslint",
+    "prettier"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "husky": "^8.0.2",
+    "jest": "^29.3.1",
+    "lint-staged": "^13.1.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "sequelize": "^6.27.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}

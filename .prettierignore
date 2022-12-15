@@ -1,0 +1,4 @@
+node_modules
+test/**.spec.js
+test/**.test.js
+package*.json

@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: nodejs-sequelize:0.1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web.rule=Host(`localhost`)"
+      - "traefik.http.routers.web.entrypoints=web"
+      - "traefik.http.services.web.loadbalancer.server.port=3000"
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000
+      - NODE_ENV=development
+      - DB_HOST=mysql
+      - REDIS_HOST=redis:6379
+    links:
+      - mysql
+      - redis
+    depends_on:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=1Str0ngP@ssw0rd
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=1Str0ngP@ssw0rd
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    restart: unless-stopped
+
+volumes:
+    mysql:
+    redis:
