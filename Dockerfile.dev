@@ -9,5 +9,13 @@ COPY package.json ./
 RUN npm install
 # Copy all files
 COPY ./ ./
+# Environment variables
+ENV DB_HOST=mysql
+ENV DB_NAME=database
+ENV DB_USER=root
+ENV DB_PASS=1Str0ngP@ssw0rd
+ENV NODE_ENV=development
+# Port
+EXPOSE 5000
 # Run npm start
 CMD ["npm", "run", "start:dev"]

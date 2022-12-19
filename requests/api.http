@@ -1,0 +1,8 @@
+GET {{host}}/{{version}}/items
+Accept: application/json
+Content-Type: application/json
+
+<> 2022-12-20T050146.200.json
+
+
+###

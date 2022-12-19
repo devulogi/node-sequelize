@@ -1,35 +1,16 @@
 openapi: 3.0.0
 info:
-  title: Node-Sequelize-OpenAPI
-  version: 0.1.0
+  title: Node Sequelize
+  version: 0.0.1
   description: Node-Sequelize-OpenAPI is a sample project that demonstrates how to use Node.js, Sequelize, and OpenAPI to build a RESTful API.
 
 servers:
-  - url: http://localhost:5000
-    description: Development server
+  - url: http://localhost:3000/api/v1
+    description: Internal server for development purposes only
 
 paths:
-  /:
+  /items:
     get:
-      tags:
-       - Base
-      summary: Base route
-      description: Returns a Hello World message
       responses:
         200:
-          description: Hello World!
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    description: Status of the request
-                    example: OK
-                  message:
-                    type: string
-                    example: Hello World!
-                  error:
-                    type: [string, null]
-                  link: http://localhost:5000/api-docs
+          description: Returns a list of items
