@@ -13,6 +13,7 @@ services:
       - "traefik.http.services.web.loadbalancer.server.port=3000"
     ports:
       - "5000:5000"
+      - "9229:9229"
     volumes:
       - .:/app
       - /app/node_modules
@@ -20,15 +21,13 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - CHOKIDAR_INTERVAL=1000
-      - NODE_ENV=development
-      - DB_HOST=mysql
-      - REDIS_HOST=redis:6379
     links:
       - mysql
       - redis
     depends_on:
       - mysql
       - redis
+    command: node --inspect=0.0.0.0:9229 index.js
 
   mysql:
     image: mysql:5.7

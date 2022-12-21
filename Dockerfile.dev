@@ -15,6 +15,9 @@ ENV DB_NAME=database
 ENV DB_USER=root
 ENV DB_PASS=1Str0ngP@ssw0rd
 ENV NODE_ENV=development
+ENV NODE_ENV=development
+ENV DB_HOST=mysql
+ENV REDIS_HOST=redis:6379
 # Port
 EXPOSE 5000
 # Run npm start
